@@ -1,0 +1,21 @@
+{
+  "name": "imooc",
+  "version": "0.0.0",
+  "homepage": "https://github.com/L1031353632/Imooc",
+  "description": "imooc movie",
+  "keywords": [
+    "imooc"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5"
+  }
+}
