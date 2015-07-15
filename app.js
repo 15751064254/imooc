@@ -17,7 +17,8 @@ var dbUrl = 'mongodb://localhost/imooc';
 //mongoose.connect('mongodb://localhost/imooc');
 mongoose.connect(dbUrl);
 
-app.set('views','./views/pages');//设置视图根目录
+//app.set('views','./views/pages');//设置视图根目录
+app.set('views','./app/views/pages');//设置视图根目录
 app.set('view engine','jade');//设置默认模板引擎
 //app.use(express.bodyParser); //格式化数据
 //app.use(bodyParser.urlencoded({ extended: false }));//TypeError: Cannot read property '_id' of undefined
