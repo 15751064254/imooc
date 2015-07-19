@@ -4,22 +4,23 @@
 var Index = require('../app/controllers/index');
 var User = require('../app/controllers/user');
 var Movie = require('../app/controllers/movie');
+var Comment = require('../app/controllers/comment');
 
 module.exports = function(app){
   // pre handle user
-  app.get(function(req, res, next){
+  app.use(function(req, res, next){
     var _user = req.session.user;
     app.locals.user = _user;
+    console.log(_user);
     next();
     //if(_user){
     //  app.locals.user = _user;
     //}
-
     //return next();
   });
 
 //  // index page
-    app.get('/', Index.index);
+  app.get('/', Index.index);
 //  app.get('/', function(req, res){ 
 //    console.log('user in session:');
 //    console.log(req.session.user);
@@ -42,7 +43,7 @@ module.exports = function(app){
 //  });
 
 //  // signup
-    app.post('/user/signup', User.signup);
+  app.post('/user/signup', User.signup);
 //  app.post('/user/signup', function(req, res){
 //    var _user = req.body.user;
 //    //var user = new User(_user);
@@ -98,7 +99,7 @@ module.exports = function(app){
 //  });
 //
 //  // signin
-    app.post('/user/signin', User.signin);
+  app.post('/user/signin', User.signin);
 //  app.post('/user/signin', function(req, res){
 //    var _user = req.body.user;
 //    var name = _user.name;
@@ -130,16 +131,20 @@ module.exports = function(app){
 //    });
 //  });
 //
+  app.get('/signin', User.showSignin);
+  app.get('/signup', User.showSignup);
 //  // logout
-    app.get('/logout', User.logout);
+  app.get('/logout', User.logout);
 //  app.get('/logout', function(req, res){
 //    delete req.session.user;
 //    delete app.locals.user;
 //    res.redirect('/');
 //  });
+
 //
 //  // userlist page
-    app.get('/admin/userlist', User.list);
+    //app.get('/admin/userlist', User.signinRequired, User.adminRequired, User.list);
+  app.get('/admin/user/list', User.signinRequired, User.adminRequired, User.list);
 //  app.get('/admin/userlist', function(req, res){
 //    User.fetch(function(err, users){
 //      if(err){
@@ -154,7 +159,7 @@ module.exports = function(app){
 //  });
 
 //  // detail page
-    app.get('/movie/:id', Movie.detail);
+  app.get('/movie/:id', Movie.detail);
 //  app.get('/movie/:id', function(req, res){
 //    var id = req.params.id;
 //    
@@ -168,7 +173,9 @@ module.exports = function(app){
 //  });
 //
 //  // admin page
-    app.get('/admin/new', Movie.new);
+    //app.get('/admin/new', Movie.new);
+    //app.get('/admin/new', User.signinRequired, User.adminRequired, Movie.new);
+  app.get('/admin/movie/new', User.signinRequired, User.adminRequired, Movie.new);
 //  app.get('/admin/new', function(req, res){
 //    res.render('admin', {
 //      title: 'imooc 后台录入页',
@@ -186,7 +193,9 @@ module.exports = function(app){
 //  });
 //
 //  // admin update movie
-    app.get('/admin/update/:id', Movie.update);
+    //app.get('/admin/update/:id', Movie.update);
+    //app.get('/admin/update/:id', User.signinRequired, User.adminRequired, Movie.update);
+  app.get('/admin/movie/update/:id', User.signinRequired, User.adminRequired, Movie.update);
 //  app.get('/admin/update/:id', function(req, res){
 //    var id = req.params.id;
 //
@@ -202,7 +211,8 @@ module.exports = function(app){
 //
 //
 //  // admin post movie
-    app.post('/admin/movie', Movie.save);
+    //app.post('/admin/movie', Movie.save);
+  app.post('/admin/movie', User.signinRequired, User.adminRequired, Movie.save);
 //  app.post('/admin/movie/new', function(req, res){
 //    var id = req.body.movie._id;
 //    var movieObj = req.body.movie;
@@ -245,7 +255,9 @@ module.exports = function(app){
 //  });
 //
 //  // list page
-    app.get('/admin/list', Movie.list);
+    //app.get('/admin/list', Movie.list);
+    //app.get('/admin/list', User.signinRequired, User.adminRequired, Movie.list);
+  app.get('/admin/movie/list', User.signinRequired, User.adminRequired, Movie.list);
 //  app.get('/admin/list', function(req, res){
 //    Movie.fetch(function(err, movies){
 //      if(err){
@@ -260,7 +272,9 @@ module.exports = function(app){
 //  });
 //
 //  // list delete movie
-    app.delete('/admin/list', Movie.del);
+    //app.delete('/admin/list', Movie.del);
+    //app.delete('/admin/list', User.signinRequired, User.adminRequired, Movie.list);
+  app.delete('/admin/movie/list', User.signinRequired, User.adminRequired, Movie.list);
 //  app.delete('/admin/list', function(req, res){
 //    var id = req.query.id;
 //
@@ -275,4 +289,8 @@ module.exports = function(app){
 //      });
 //    }
 //  });
+
+
+//  // Comment
+  app.post('/user/comment', User.signinRequired, Comment.save);
 };
