@@ -304,5 +304,5 @@ module.exports = function(app){
   app.get('/admin/category/list', User.signinRequired, User.adminRequired, Category.list);
 
   // results
-  //app.get('/results', Index.search);
+  app.get('/results', Index.search);
 };
