@@ -1,23 +1,37 @@
 .container
   .row
-    .page-header
-      h1 #{title} 
-      //- h1= title
-      small 重度科幻迷
-.navbar.navbar-default.navbar-fixed-bottom
+    .page-header.clearfix
+      h1= title
+      .col-md-8
+        form(method="GET", action="/results")
+          .input-group.col-sm-4.pull-right
+            input.from-control(type="search", name="q")
+            span.input-group-btn
+              button.btn.btn-default(type="submit") 搜索
+.nvarbar.navbar-default.navbar-fixed-bottom
   .container
     .navbar-header
       a.navbar-brand(href="/") 重度科幻迷
-    if user
-      p.navbar-rext.navbar-right
-        span 欢迎您,#{user.name}
-        span &nbsp;|&nbsp;
-        a.navbar-link(href='/logout') 登出
-    else
-      p.navbar-text.navbar-right
-        a.navbar-link(href="#", data-toggle="modal", data-target="#signupModal") 注册
-        span &nbsp;|&nbsp;
-        a.navbar-link(href="#", data-toggle="modal", data-target="#signinModal") 登录
+//-  .container
+//-    .row
+//-      .page-header
+//-        h1 #{title} 
+//-        //- h1= title
+//-        small 重度科幻迷
+//-  .navbar.navbar-default.navbar-fixed-bottom
+//-    .container
+//-      .navbar-header
+//-        a.navbar-brand(href="/") 重度科幻迷
+      if user
+        p.navbar-rext.navbar-right
+          span 欢迎您,#{user.name}
+          span &nbsp;|&nbsp;
+          a.navbar-link(href="/logout") 登出
+      else
+        p.navbar-text.navbar-right
+          a.navbar-link(href="#", data-toggle="modal", data-target="#signupModal") 注册
+          span &nbsp;|&nbsp;
+          a.navbar-link(href="#", data-toggle="modal", data-target="#signinModal") 登录
 #signupModal.modal.fade
   .modal-dialog
     .modal-content

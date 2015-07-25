@@ -5,6 +5,7 @@ var Index = require('../app/controllers/index');
 var User = require('../app/controllers/user');
 var Movie = require('../app/controllers/movie');
 var Comment = require('../app/controllers/comment');
+var Category = require('../app/controllers/category');
 
 module.exports = function(app){
   // pre handle user
@@ -20,6 +21,7 @@ module.exports = function(app){
   });
 
 //  // index page
+  // Index
   app.get('/', Index.index);
 //  app.get('/', function(req, res){ 
 //    console.log('user in session:');
@@ -43,6 +45,7 @@ module.exports = function(app){
 //  });
 
 //  // signup
+  // User
   app.post('/user/signup', User.signup);
 //  app.post('/user/signup', function(req, res){
 //    var _user = req.body.user;
@@ -159,6 +162,7 @@ module.exports = function(app){
 //  });
 
 //  // detail page
+  // Movie
   app.get('/movie/:id', Movie.detail);
 //  app.get('/movie/:id', function(req, res){
 //    var id = req.params.id;
@@ -274,7 +278,7 @@ module.exports = function(app){
 //  // list delete movie
     //app.delete('/admin/list', Movie.del);
     //app.delete('/admin/list', User.signinRequired, User.adminRequired, Movie.list);
-  app.delete('/admin/movie/list', User.signinRequired, User.adminRequired, Movie.list);
+  app.delete('/admin/movie/list', User.signinRequired, User.adminRequired, Movie.del);
 //  app.delete('/admin/list', function(req, res){
 //    var id = req.query.id;
 //
@@ -291,6 +295,14 @@ module.exports = function(app){
 //  });
 
 
-//  // Comment
+  // Comment
   app.post('/user/comment', User.signinRequired, Comment.save);
+
+  // Category
+  app.get('/admin/category/new', User.signinRequired, User.adminRequired, Category.new);
+  app.post('/admin/category', User.signinRequired, User.adminRequired, Category.save);
+  app.get('/admin/category/list', User.signinRequired, User.adminRequired, Category.list);
+
+  // results
+  //app.get('/results', Index.search);
 };
