@@ -83,7 +83,7 @@ exports.update = function(req, res){
   if(id){
     Movie.findById(id, function(err, movie){
       Category.find({}, function(err, categories){
-        res.reder('admin', {
+        res.render('admin', {
           title: 'imooc 后台更新页',
           movie: movie,
           categories: categories
@@ -121,7 +121,6 @@ exports.savePoster = function(req, res, next){
     next();
   }
 };
-
 
 // admin post movie
 exports.save = function(req, res){

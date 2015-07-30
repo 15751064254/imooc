@@ -1,21 +1,46 @@
 var express = require('express');//加载 express 模块
-var bodyParser = require('body-parser');
 var path = require('path');//引入path模块
 var mongoose = require('mongoose');//引入mongoose模块
+var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
+//var multipart = require('connect-multiparty');
 var session = require('express-session');
-var morgan = require('morgan');
 //var mongoStore = require('connect-mongo')(express);
 var mongoStore = require('connect-mongo')(session);
+var morgan = require('morgan');
+var serveStatic = require('serve-static');
 //var Movie = require('./models/movie');
 //var User = require('./models/user');
 //var _ = require('underscore');
-var port = process.env.PORT || 3000;// process 全局变量，获得传入参数
-var app = express();//启动 web 服务器
 
+var port = process.env.PORT || 3000;// process 全局变量，获得传入参数
+
+var app = express();//启动 web 服务器
+var fs = require('fs');
 var dbUrl = 'mongodb://localhost/imooc';
 //mongoose.connect('mongodb://localhost/imooc');
 mongoose.connect(dbUrl);
+
+// models loading
+var models_path = __dirname + '/app/models';
+var walk = function(path){
+  fs
+    .readdirSync(path)
+    .forEach(function(file){
+      var newPath = path + '/' + file;
+      var stat = fs.statSync(newPath);
+
+      if(stat.isFile()){
+        if(/(.*)\.(js|coffee)/.test(file)){
+          require(newPath);
+        }
+      }
+      else if(stat.isDirectory()){
+        walk(newPaht);
+      }
+    });
+};
+walk(models_path);
 
 //app.set('views','./views/pages');//设置视图根目录
 app.set('views','./app/views/pages');//设置视图根目录
@@ -23,9 +48,9 @@ app.set('view engine','jade');//设置默认模板引擎
 //app.use(express.bodyParser); //格式化数据
 //app.use(bodyParser.urlencoded({ extended: false }));//TypeError: Cannot read property '_id' of undefined
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public'))); //dirname当前目录
 
 app.use(cookieParser());
+//app.use(multipart());
 app.use(session({
   secret: 'imooc',
   resave: false,
@@ -56,8 +81,10 @@ if('development' === app.get('env')){
 
 require('./config/routes')(app);
 
-app.locals.moment = require('moment');
 app.listen(port);//监听端口
+app.locals.moment = require('moment');
+//app.use(express.static(path.join(__dirname, 'public'))); //dirname当前目录
+app.use(serveStatic(path.join(__dirname, 'public'))); //dirname当前目录
 
 console.log('imooc startd on port '+ port);//打印日志
 

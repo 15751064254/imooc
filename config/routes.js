@@ -7,7 +7,11 @@ var Movie = require('../app/controllers/movie');
 var Comment = require('../app/controllers/comment');
 var Category = require('../app/controllers/category');
 
+var multipart = require('connect-multiparty');
+var multipartMiddleware = multipart();
+
 module.exports = function(app){
+
   // pre handle user
   app.use(function(req, res, next){
     var _user = req.session.user;
@@ -216,7 +220,7 @@ module.exports = function(app){
 //
 //  // admin post movie
     //app.post('/admin/movie', Movie.save);
-  app.post('/admin/movie', User.signinRequired, User.adminRequired, Movie.save);
+  app.post('/admin/movie', multipartMiddleware, User.signinRequired, User.adminRequired, Movie.savePoster, Movie.save);
 //  app.post('/admin/movie/new', function(req, res){
 //    var id = req.body.movie._id;
 //    var movieObj = req.body.movie;
