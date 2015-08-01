@@ -64,12 +64,12 @@ exports.signin = function(req, res){
       }
 
       if(isMatch){
-        console.log('Password is matched');
+        //console.log('Password is matched');
         req.session.user = user;
         return res.redirect('/');
       }
       else{
-        console.log('Password is not matched');
+        //console.log('Password is not matched');
         return res.redirect('/signin');
       }
     });

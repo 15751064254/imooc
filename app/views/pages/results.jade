@@ -1,4 +1,4 @@
-extends ../loayout
+extends ../layout
 
 block content
   .container
@@ -16,7 +16,7 @@ block content
                   h4 #{item.title}
                   p: a.btn.btn-primary(href="/movie/#{item._id}", role="button") 观看预告片
       ul.pagination
-        - for (var i=0; i < totalPage; i++){
+        - for (var i = 0; i < totalPage; i++){
           - if (currentPage == (i + 1)){
             li.active
               span #{currentPage}

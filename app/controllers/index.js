@@ -1,13 +1,13 @@
 var Movie = require('../models/movie');
-var Catetory = require('../models/category');
+var Category = require('../models/category');
 
 // index page
 exports.index = function(req, res){
 //app.get('/', function(req, res){ 
-  console.log('user in session:');
-  console.log(req.session.user);
+  //console.log('user in session:');
+  //console.log(req.session.user);
 
-  Catetory
+  Category
     .find({})
     .populate({
       path: 'movies',
@@ -47,7 +47,7 @@ exports.index = function(req, res){
 exports.search = function(req, res){
   var catId = req.query.cat;
   var q = req.query.q;
-  var pate = parseInt(req.query.p, 10) || 0;
+  var page = parseInt(req.query.p, 10) || 0;
   var count = 2;
   var index = page * count;
 
@@ -59,6 +59,7 @@ exports.search = function(req, res){
         select: 'title poster'
       })
       .exec(function(err, categories){
+        console.log(categories);
         if(err){
           console.log(err);
         }
