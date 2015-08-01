@@ -48,7 +48,7 @@ exports.search = function(req, res){
   var catId = req.query.cat;
   var q = req.query.q;
   var page = parseInt(req.query.p, 10) || 0;
-  var count = 2;
+  var count = 5;
   var index = page * count;
 
   if(catId){
@@ -59,7 +59,7 @@ exports.search = function(req, res){
         select: 'title poster'
       })
       .exec(function(err, categories){
-        console.log(categories);
+        //console.log(categories);
         if(err){
           console.log(err);
         }
@@ -67,10 +67,10 @@ exports.search = function(req, res){
         var movies = category.movies || [];
         var results = movies.slice(index, index + count);
 
-        res.reder('results', {
+        res.render('results', {
           title: 'imooc 结果列表页',
           keyword: category.name,
-          currentPage: (pate + 1),
+          currentPage: (page + 1),
           query: 'cat=' + catId,
           totalPate: Math.ceil(movies.length / count),
           movies: results

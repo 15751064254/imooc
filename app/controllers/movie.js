@@ -105,7 +105,7 @@ exports.savePoster = function(req, res, next){
   var originalFilename = posterData.originalFilename;
 
   if(originalFilename){
-    fs.readFile(filePaht, function(err, data){
+    fs.readFile(filePath, function(err, data){
       var timestamp = Date.now();
       var type = posterData.type.split('/')[1];
       var poster = timestamp + '.' + type;
