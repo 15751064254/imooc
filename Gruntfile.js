@@ -108,5 +108,5 @@ module.exports = function(grunt){
 
   grunt.option('force', true);
   grunt.registerTask('default', ['concurrent']);
-  grunt.registerTask('test', ['mochaTast']);
+  grunt.registerTask('test', ['mochaTest']);
 };

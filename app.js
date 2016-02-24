@@ -1,9 +1,10 @@
 var express = require('express');//加载 express 模块
 var path = require('path');//引入path模块
 var mongoose = require('mongoose');//引入mongoose模块
+
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
-//var multipart = require('connect-multiparty');
+var multipart = require('connect-multiparty');
 var session = require('express-session');
 //var mongoStore = require('connect-mongo')(express);
 var mongoStore = require('connect-mongo')(session);
@@ -47,10 +48,13 @@ app.set('views','./app/views/pages');//设置视图根目录
 app.set('view engine','jade');//设置默认模板引擎
 //app.use(express.bodyParser); //格式化数据
 //app.use(bodyParser.urlencoded({ extended: false }));//TypeError: Cannot read property '_id' of undefined
+//app.use(bodyParser());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(bodyParser.json());
+//app.use(express.cookieParser());
 app.use(cookieParser());
-//app.use(multipart());
+app.use(multipart());
+
 app.use(session({
   secret: 'imooc',
   resave: false,
@@ -61,7 +65,6 @@ app.use(session({
   })
 }));
 
-//app.use(express.cookieParser());
 //app.use(express.session({
 //  secret: 'imooc',
 //  store: new mongoStore({

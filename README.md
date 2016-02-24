@@ -35,3 +35,8 @@ Import code
 
 
 git push origin master
+
+##grunt test
+
+#####
+npm install async bcrypt connect-mongo crypto express grunt grunt-concurrent grunt-contrib-jshint grunt-contrib-less grunt-contrib-uglify grunt-contrib-watch grunt-mocha-test grunt-nodemon jade moment mongoose underscore body-parser cookie-parser express-session morgan connect-multiparty mocha should --save
