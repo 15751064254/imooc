@@ -16,6 +16,8 @@ var User = require('../../app/models/user');
 var User = mongoose.model('User');
 
 
+var user;
+
 //test
 describe('<Unit Test', function(){
   describe('Model User:', function(){
