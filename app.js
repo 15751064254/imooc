@@ -75,7 +75,7 @@ if('development' === app.get('env')){
   app.set('showStackError', true);
   //app.user(express.logger(':method :url :status'));
   app.use(morgan(':method :url :status'));
-  app.locals.pretty = true; //格式化代码
+  //app.locals.pretty = true; //格式化代码
   mongoose.set('debug', true);
 }
 
