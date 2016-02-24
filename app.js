@@ -89,6 +89,7 @@ app.use(serveStatic(path.join(__dirname, 'public'))); //dirname当前目录
 console.log('imooc startd on port '+ port);//打印日志
 
 
+
 ////路由编写
 //
 //// index page
