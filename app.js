@@ -80,6 +80,8 @@ if('development' === app.get('env')){
   app.use(morgan(':method :url :status'));
   //app.locals.pretty = true; //格式化代码
   mongoose.set('debug', true);
+  app.locals.pretty = false; //格式化代码
+  //mongoose.set('debug', false);
 }
 
 require('./config/routes')(app);
