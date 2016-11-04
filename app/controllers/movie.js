@@ -1,12 +1,13 @@
 var Movie = require('../models/movie');
 var Category = require('../models/category');
-var Comment = require('../models/comment');
+// var Comment = require('../models/comment');
 var _ = require('underscore');
 var fs = require('fs');
 var path = require('path');
 
 // detail page
 exports.detail = function(req, res){
+
 //app.get('/movie/:id', function(req, res){
   var id = req.params.id;
 

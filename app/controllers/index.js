@@ -51,6 +51,12 @@ exports.search = function(req, res){
   var count = 5;
   var index = page * count;
 
+  console.log("catId:" + catId);
+  console.log("q:" + q);
+  console.log("page:" + page);
+  console.log("count:" + count);
+  console.log("index:" + index);
+
   if(catId){
     Category
       .find({_id: catId})

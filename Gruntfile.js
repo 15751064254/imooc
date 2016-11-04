@@ -9,7 +9,7 @@ module.exports = function(grunt){
       },
       js: {
         files: ['public/js/**', 'models/**/*.js', 'schemas/**/*.js'],
-        //tasks: ['jshint'],
+        tasks: ['jshint'],
         options: {
           livereload: true
         }
