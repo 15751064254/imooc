@@ -5,7 +5,6 @@
 var mongoose = require('mongoose');
 var Movie = mongoose.model('Movie');
 var Category = mongoose.model('Category');
-var Comment = mongoose.model('Comment');
 var _ = require('underscore');
 var fs = require('fs');
 var path = require('path');
@@ -23,6 +22,7 @@ exports.detail = function(req, res){
   });
   
   Movie.findById(id, function(err, movie){
+    var Comment = mongoose.model('Comment');
     Comment
       .find({movie: id})
       .populate('from', 'name')
