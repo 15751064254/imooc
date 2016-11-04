@@ -12,11 +12,16 @@ function getRandomString(len){
 var should = require('should');
 var app = require('../../app');
 var mongoose = require('mongoose');
-var User = require('../../app/models/user');
+//var User = require('../../app/models/user');
 var User = mongoose.model('User');
 
 
+<<<<<<< HEAD
 var user = {};
+=======
+var user;
+
+>>>>>>> 13ffee9bae6fe63bb089965ee6c02ca810439b6c
 //test
 describe('<Unit Test', function(){
   describe('Model User:', function(){
@@ -54,7 +59,7 @@ describe('<Unit Test', function(){
 
       it('should password be hashed correctly', function(done){
         var password = user.password;
-        var _user = new User();
+        var _user = new User(user);
 
         _user.save(function(err){
           should.not.exist(err);

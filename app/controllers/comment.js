@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 // var CommentModel = require('../models/comment');
+=======
+//var Comment = require('../models/comment');
+var mongoose = require('mongoose');
+var Comment = mongoose.model('Comment');
+
+>>>>>>> 13ffee9bae6fe63bb089965ee6c02ca810439b6c
 // comment
 exports.save = function(req, res){
   var _comment = req.body.comment;
