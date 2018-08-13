@@ -1,4 +1,7 @@
+
 module.exports = function(grunt){
+  'use strict';
+
   grunt.initConfig({
     watch: {
       jade: {
@@ -16,14 +19,6 @@ module.exports = function(grunt){
       }
     },
 
-    uglify: {
-      files: ['public/**/*.js'],
-      tasks: ['jshint'],
-      options: {
-        livereload: true
-      }
-    },
-
     styles: {
       files: ['public/**/*.less'],
       tasks: ['less'],
@@ -37,11 +32,18 @@ module.exports = function(grunt){
         jshintrc: '.jshintrc',
         ignores: ['public/libs/**/*.js']
       },
-      all: ['public/js/*.js', 'test/**/*.js', 'app/**/*.js']
+      all: [
+        'Gruntfile.js',
+        'app.js',
+        'config/*.js',
+        'public/js/*.js',
+        'app/**/*.js',
+        'test/**/*.js'
+        ]
     },
 
     less: {
-      development:{
+      development: {
         options: {
           compress: true,
           yuicompress: true,
@@ -60,7 +62,12 @@ module.exports = function(grunt){
           'public/build/detail.min.js': [
             'public/js/detail.js'
           ]
-        }
+        },
+        //files: ['public/**/*.js'],
+        tasks: ['jshint'],
+		options: {
+         livereload: true
+       }
       }
     },
 
@@ -97,6 +104,9 @@ module.exports = function(grunt){
       }
     }
   });
+
+  require('load-grunt-tasks');
+  require('time-grunt')(grunt);
 
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-nodemon');

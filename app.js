@@ -7,7 +7,7 @@ var cookieParser = require('cookie-parser');
 var multipart = require('connect-multiparty');
 var session = require('express-session');
 //var mongoStore = require('connect-mongo')(express);
-var mongoStore = require('connect-mongo')(session);
+var MongoStore = require('connect-mongo')(session);
 var morgan = require('morgan');
 var serveStatic = require('serve-static');
 //var Movie = require('./models/movie');
@@ -37,7 +37,7 @@ var walk = function(path){
         }
       }
       else if(stat.isDirectory()){
-        walk(newPaht);
+        walk(newPath);
       }
     });
 };
@@ -59,7 +59,7 @@ app.use(session({
   secret: 'imooc',
   resave: false,
   saveUninitialized: false,
-  store: new mongoStore({
+  store: new MongoStore({
     url: dbUrl,
     collection: 'sessions'
   })
@@ -144,7 +144,7 @@ console.log('imooc startd on port '+ port);//打印日志
 //});
 //
 //// index page
-//app.get('/', function(req, res){ 
+//app.get('/', function(req, res){
 //  //console.log('user in session:');
 //  //console.log(req.session.user);
 //
@@ -302,7 +302,7 @@ console.log('imooc startd on port '+ port);//打印日志
 //// detail page
 //app.get('/movie/:id', function(req, res){
 //  var id = req.params.id;
-//  
+//
 //  Movie.findById(id, function(err, movie){
 //    res.render('detail', {
 //      title: 'imooc' + movie.title,
