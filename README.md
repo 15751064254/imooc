@@ -50,11 +50,11 @@ git push origin master
     post
     http://192.168.200.215:3000/user/signup
     http://192.168.200.215:3000/user/signin
-    http://192.168.200.215:3000 /movie/
-    http://192.168.200.215:3000 /admin/movie/update/
-    http://192.168.200.215:3000 /admin/movie/list
-    http://192.168.200.215:3000 /user/comment
-    http://192.168.200.215:3000 /admin/category
+    http://192.168.200.215:3000/movie/
+    http://192.168.200.215:3000/admin/movie/update/
+    http://192.168.200.215:3000/admin/movie/list
+    http://192.168.200.215:3000/user/comment
+    http://192.168.200.215:3000/admin/category
 
 
 
@@ -63,10 +63,10 @@ git push origin master
     http://192.168.200.215:3000/signin
     http://192.168.200.215:3000/signup
     http://192.168.200.215:3000/logout
-    http://192.168.200.215:3000 /admin/user/list
-    http://192.168.200.215:3000 /admin/movie/new
-    http://192.168.200.215:3000 /admin/movie/list
-    http://192.168.200.215:3000 /admin/category/new
-    http://192.168.200.215:3000 /admin/category/list
-    http://192.168.200.215:3000 /results
+    http://192.168.200.215:3000/admin/user/list
+    http://192.168.200.215:3000/admin/movie/new
+    http://192.168.200.215:3000/admin/movie/list
+    http://192.168.200.215:3000/admin/category/new
+    http://192.168.200.215:3000/admin/category/list
+    http://192.168.200.215:3000/results
 
