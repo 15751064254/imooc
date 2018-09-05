@@ -1,3 +1,5 @@
 node_modules
 public/libs/*
 public/build/*
+public/dest/*
+public/bower_components/*

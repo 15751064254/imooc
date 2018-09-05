@@ -1,6 +1,9 @@
 //var Movie = require('../models/movie');
 //var User = require('../models/user');
 //var _ = require('underscore');
+var Demo = require('../app/controllers/demo/index');
+var Map = require('../app/controllers/map/index');
+
 var Index = require('../app/controllers/index');
 var User = require('../app/controllers/user');
 var Movie = require('../app/controllers/movie');
@@ -11,6 +14,12 @@ var multipart = require('connect-multiparty');
 var multipartMiddleware = multipart();
 
 module.exports = function(app){
+
+  // demo
+  app.get('/demo', Demo.index);
+
+  // map
+  app.get('/map', Map.index);
 
   // pre handle user
   app.use(function(req, res, next){
@@ -27,7 +36,7 @@ module.exports = function(app){
 //  // index page
   // Index
   app.get('/', Index.index);
-//  app.get('/', function(req, res){ 
+//  app.get('/', function(req, res){
 //    console.log('user in session:');
 //    console.log(req.session.user);
 //
@@ -170,7 +179,7 @@ module.exports = function(app){
   app.get('/movie/:id', Movie.detail);
 //  app.get('/movie/:id', function(req, res){
 //    var id = req.params.id;
-//    
+//
 //    Movie.findById(id, function(err, movie){
 //      res.render('detail', {
 //        //title: 'imooc' + movie.title,
@@ -309,4 +318,5 @@ module.exports = function(app){
 
   // results
   app.get('/results', Index.search);
+
 };
