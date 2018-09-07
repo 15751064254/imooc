@@ -2,10 +2,10 @@ const utils = require('../utils/utils');
 const net = require('net');
 const socket = new net.Socket();
 
-const host = '119.254.144.7';
-const port = 7708;
-//const host = '172.17.33.141';
-//const port = 7008;
+//const host = '119.254.144.7';
+//const port = 7708;
+const host = '172.17.33.141';
+const port = 7008;
 
 
 socket.setTimeout(3000);
@@ -33,34 +33,42 @@ socket.on('close', () => {
   console.log('Connection closed');
 });
 
-let messageNo = '0001';
+let messageNo = 1;
 //----------------------------------------------------//
 function generateMessage(data){
-  let terminalPhoneNo = getTerminalPhoneNoByString('18500525865');
-
-  //let provinceId = '000B';
-  //let cityId ='006F';
-  let provinceId = getProvinceIdByHexString(11);
-  let cityId = getCityIdByHexString(111);
-  let manufacturerId = getManufacturerIdByHexString('70114');
-  let terminalModel = getTerminalModelByHexString('70114001');
-  let terminalId = getTerminalIdByHexString('1850052');
-  let plateColor = getPlateColorByHexString('4');
-  let plateNumber = getPlateNumberByHexString('丰田86');
 
   let authCode = '';
 
+  //let provinceId = '000B';
+  //let cityId ='006F';
+  //let provinceId = getProvinceIdByHexString('11');
+  //let cityId = getCityIdByHexString('111');
+  let provinceId = getProvinceIdByHexString(12);
+  let cityId = getCityIdByHexString(126);
+  let manufacturerId = getManufacturerIdByHexString('125');
+  let terminalModel = getTerminalModelByHexString('126');
+  //let terminalId = getTerminalIdByHexString('1850052');
+  let terminalId = getTerminalIdByHexString('0185001');
+  let plateColor = getPlateColorByHexString('4');
+  let plateNumber = getPlateNumberByHexString('丰田86');
+  //let plateNumber = getPlateNumberByHexString('BRZ86');
   let messageId = '0100';
-  //let messageNo = '0001';
-  let messageBodyAttribute = '002B';
-  let messageheader = `${messageId}${messageBodyAttribute}${terminalPhoneNo}${messageNo}`;
+  let terminalPhoneNo = getTerminalPhoneNoByString('18500525865');
+
+  messageNo = prefixZero(messageNo, 4);
   let terminalInfo = `${manufacturerId}${terminalModel}${terminalId}`;
   let vehicleInfo = `${plateColor}${plateNumber}`;
-  let messageBody = `${messageheader}${provinceId}${cityId}${terminalInfo}${vehicleInfo}`;
-  let checkCode = 'D1';
-  let strHexString = `7E${messageBody}${checkCode}7E`;
+  let messageBody = `${provinceId}${cityId}${terminalInfo}${vehicleInfo}`;
+  let messageBodyAttribute = utils.decToHexString(messageBody.length / 2);
+  messageBodyAttribute = prefixZero(messageBodyAttribute, 4)
+  let header = `${messageId}${messageBodyAttribute}${terminalPhoneNo}${messageNo}`;
+  let body = `${header}${messageBody}`;
+  //let checkCode = 'D1';
+  let checkCode = utils.generateCheckCode(body);
+  let hexString = utils.generateByHexString(`${body}${checkCode}`);
+  let messageDate = `7E${hexString}7E`;
 
-  return strHexString;
+  return messageDate;
 
 }
 var iconv = require('iconv-lite');
@@ -87,24 +95,16 @@ function getTerminalPhoneNoByString(terminalPhoneNo){
 }
 
 function getPlateColorByHexString(plateColor){
-  let plateColorHex = decToHexString(plateColor);
+  let plateColorHex = utils.decToHexString(plateColor);
 	return plateColorHex;
 }
 
-function decToHexString(dec){
-  var hexString = parseInt(dec).toString(16);
-  if(hexString.length < 2) {
-    hexString = '0' + hexString;
-  }
-  //console.log(hexString + '\t' + dec);
-  return hexString.toUpperCase();
-}
 
 function getProvinceIdByHexString(provinceId){
   //let provinceId = '000B';
   let provinceIdHex = 0000;
   if(typeof(provinceId) === 'number') {
-    provinceIdHex = decToHexString(provinceId);
+    provinceIdHex = utils.decToHexString(provinceId);
   } else {
     provinceIdHex = getStringGbkByHexString(provinceId);
   }
@@ -117,7 +117,7 @@ function getCityIdByHexString(cityId){
   //let cityId ='006F';
   let cityIdHex = 0000;
   if(typeof(cityId) === 'number') {
-    cityIdHex = decToHexString(cityId);
+    cityIdHex = utils.decToHexString(cityId);
   } else {
     cityIdHex = getStringGbkByHexString(cityId);
   }
@@ -142,16 +142,17 @@ function getTerminalIdByHexString(terminalId){
 
 function prefixZero(str, len){
   //console.log((Array(len).join(0) + str).slice(-len) + '\t\t\t\t\t' + str);
-	return (Array(len).join(0) + str).slice(-len);
+  return (Array(len).join(0) + str).slice(-len);
 }
 
 function suffixZero(str, len){
   //console.log((str + Array(len).join(0)).slice(0, len) + '\t\t\t\t\t' + str);
-	return (str + Array(len).join(0)).slice(0, len);
+  return (str + Array(len).join(0)).slice(0, len);
 }
 
 function send(socket, data){
   let str = generateMessage(data);
+  //str = '7E0100002B0185005258650001000C007D02313235000031323600000000000000000000000000000000003031383530303104B7E1CCEF3836F37E';
   console.log('\t' + str);
   const array = utils.hexStringToByte(str);
   const sendBuf = Buffer.from(array);
