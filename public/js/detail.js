@@ -1,13 +1,13 @@
-$(function(){
-  $('.comment').click(function(e){
+$(function () {
+  $('.comment').click(function (e) {
     var target = $(this);
     var toId = target.data('tid');
     var commentId = target.data('cid');
 
-    if($('#toId').length > 0){
+    if ($('#toId').length > 0) {
       $('#toId').val(toId);
     }
-    else{
+    else {
       $('<input>').attr({
         type: 'hidden',
         id: 'toId',
@@ -16,10 +16,10 @@ $(function(){
       }).appendTo('#commentForm');
     }
 
-    if($('#commentId').length > 0){
+    if ($('#commentId').length > 0) {
       $('#commentId').val(commentId);
     }
-    else{
+    else {
       $('<input>').attr({
         type: 'hidden',
         id: 'commentId',

@@ -33,10 +33,10 @@ var MovieSchema = new Schema({
 });
 
 // var ObjectId = mongoose.Schema.Type.ObjectId
-MovieSchema.pre('save', function(next){
-  if(this.isNew){
+MovieSchema.pre('save', function (next) {
+  if (this.isNew) {
     this.meta.createAt = this.meta.updateAt = Date.now();
-  }else{
+  } else {
     this.meta.updateAt = Date.now();
   }
 
@@ -44,15 +44,15 @@ MovieSchema.pre('save', function(next){
 });
 
 MovieSchema.statics = {
-  fetch: function(cb){
+  fetch: function (cb) {
     return this
       .find({})
       .sort('meta.updateAt')
       .exec(cb);
   },
-  findById: function(id, cb){
+  findById: function (id, cb) {
     return this
-      .findOne({_id: id})
+      .findOne({ _id: id })
       .exec(cb);
   }
 };

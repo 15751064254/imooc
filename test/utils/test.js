@@ -7,6 +7,6 @@ var hexStr = b.byteToHexString(array);
 console.log(hexStr);
 
 console.log('\r\n');
-console.log('str:\t'+str);
-console.log('hexStr:\t'+ hexStr);
+console.log('str:\t' + str);
+console.log('hexStr:\t' + hexStr);
 console.log(str === hexStr);

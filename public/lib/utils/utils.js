@@ -11,7 +11,7 @@ function hexStringToByte(hexString) {
 
   length /= SUBLEN;
   hexString = hexString.toUpperCase();
-  for (let i = 0, pos = 0; i < length; i++, pos += SUBLEN) {
+  for (let i = 0, pos = 0; i < length; i++ , pos += SUBLEN) {
     let str = hexString.substr(pos, SUBLEN);
     let v = parseInt(str, 16);
     hexArray.push(v);
@@ -32,7 +32,7 @@ function byteToHexString(hexArray) {
   return hexs.toUpperCase();
 }
 
-function generateByHexString(hexString){
+function generateByHexString(hexString) {
   let length = hexString.length;
   let hexs = '';
   if (length % SUBLEN !== 0) {
@@ -40,9 +40,8 @@ function generateByHexString(hexString){
   }
 
   length /= SUBLEN;
-  for (let i = 0, pos = 0; i < length; i++, pos += SUBLEN) {
+  for (let i = 0, pos = 0; i < length; i++ , pos += SUBLEN) {
     let str = hexString.substr(pos, SUBLEN);
-    console.log(str);
     if (str === '7D') {
       hexs += '7D01'
     } else if (str === '7E') {
@@ -53,23 +52,18 @@ function generateByHexString(hexString){
   }
 
   return hexs;
-
-  //console.log(hexString);
-  //console.log(hexString.replace(/7D/g, '7D01').replace(/7E/g,'7D02'));
-  //return hexString.replace(/7D/g, '7D01').replace(/7E/g,'7D02');
-  //return hexString;
 }
 
-function generateCheckCode(hexString){
+function generateCheckCode(hexString) {
   let code = 0;
   let length = hexString.length;
 
-  if (length % SUBLEN !== 0){
+  if (length % SUBLEN !== 0) {
     return decToHexString(code);
   }
 
   length /= SUBLEN;
-  for (let i = 0, pos = 0; i < length; i++, pos += SUBLEN) {
+  for (let i = 0, pos = 0; i < length; i++ , pos += SUBLEN) {
     let str = hexString.substr(pos, SUBLEN);
     let v = parseInt(str, 16);
     code = code ^ v;
@@ -79,9 +73,9 @@ function generateCheckCode(hexString){
 }
 
 
-function decToHexString(dec){
+function decToHexString(dec) {
   var hexString = parseInt(dec).toString(16);
-  if(hexString.length < SUBLEN) {
+  if (hexString.length < SUBLEN) {
     hexString = '0' + hexString;
   }
   //console.log(hexString + '\t' + dec);

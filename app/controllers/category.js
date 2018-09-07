@@ -3,7 +3,7 @@ var Category = require('../models/category');
 //var Category = mongoose.model('Category');
 
 // admin new pate
-exports.new = function(req, res){
+exports.new = function (req, res) {
   res.render('category_admin', {
     title: 'imooc 后台分类录入页',
     category: {}
@@ -11,12 +11,12 @@ exports.new = function(req, res){
 };
 
 // admin post movie
-exports.save = function(req, res){
+exports.save = function (req, res) {
   var _category = req.body.category;
   var category = new Category(_category);
 
-  category.save(function(err, category){
-    if(err){
+  category.save(function (err, category) {
+    if (err) {
       console.log(err);
     }
 
@@ -25,9 +25,9 @@ exports.save = function(req, res){
 };
 
 // catelist page
-exports.list = function(req, res){
-  Category.fetch(function(err, catetories){
-    if(err){
+exports.list = function (req, res) {
+  Category.fetch(function (err, catetories) {
+    if (err) {
       console.log(err);
     }
 

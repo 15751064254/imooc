@@ -24,19 +24,19 @@ mongoose.connect(dbUrl);
 
 // models loading
 var models_path = __dirname + '/app/models';
-var walk = function(path){
+var walk = function (path) {
   fs
     .readdirSync(path)
-    .forEach(function(file){
+    .forEach(function (file) {
       var newPath = path + '/' + file;
       var stat = fs.statSync(newPath);
 
-      if(stat.isFile()){
-        if(/(.*)\.(js|coffee)/.test(file)){
+      if (stat.isFile()) {
+        if (/(.*)\.(js|coffee)/.test(file)) {
           require(newPath);
         }
       }
-      else if(stat.isDirectory()){
+      else if (stat.isDirectory()) {
         walk(newPath);
       }
     });
@@ -44,8 +44,8 @@ var walk = function(path){
 walk(models_path);
 
 //app.set('views','./views/pages');//设置视图根目录
-app.set('views','./app/views/pages');//设置视图根目录
-app.set('view engine','jade');//设置默认模板引擎
+app.set('views', './app/views/pages');//设置视图根目录
+app.set('view engine', 'jade');//设置默认模板引擎
 //app.use(express.bodyParser); //格式化数据
 //app.use(bodyParser.urlencoded({ extended: false }));//TypeError: Cannot read property '_id' of undefined
 //app.use(bodyParser());
@@ -74,7 +74,7 @@ app.use(session({
 //}));
 
 //设置入口文件，输出日志和错误信息
-if('development' === app.get('env')){
+if ('development' === app.get('env')) {
   app.set('showStackError', true);
   //app.user(express.logger(':method :url :status'));
   app.use(morgan(':method :url :status'));
@@ -91,7 +91,7 @@ app.locals.moment = require('moment');
 //app.use(express.static(path.join(__dirname, 'public'))); //dirname当前目录
 app.use(serveStatic(path.join(__dirname, 'public'))); //dirname当前目录
 
-console.log('imooc startd on port '+ port);//打印日志
+console.log('imooc startd on port ' + port);//打印日志
 
 
 

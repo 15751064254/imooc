@@ -1,4 +1,4 @@
-module.exports = function(grunt){
+module.exports = function (grunt) {
   'use strict';
 
   grunt.initConfig({
@@ -68,7 +68,7 @@ module.exports = function(grunt){
         'public/lib/**/*.js',
         'app/**/*.js',
         'test/**/*.js'
-        ]
+      ]
     },
 
     less: {
@@ -89,7 +89,7 @@ module.exports = function(grunt){
     uglify: {
       options: {
         banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
-        '<%= grunt.template.today("yyyy-mm-dd") %> */',
+          '<%= grunt.template.today("yyyy-mm-dd") %> */',
         livereload: true,
         //mangle: true,
         comments: 'false'

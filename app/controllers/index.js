@@ -2,8 +2,8 @@ var Movie = require('../models/movie');
 var Category = require('../models/category');
 
 // index page
-exports.index = function(req, res){
-//app.get('/', function(req, res){ 
+exports.index = function (req, res) {
+  //app.get('/', function(req, res){ 
   //console.log('user in session:');
   //console.log(req.session.user);
 
@@ -14,8 +14,8 @@ exports.index = function(req, res){
       select: 'title poster',
       options: { limit: 6 }
     })
-    .exec(function(err, categories){
-      if(err){
+    .exec(function (err, categories) {
+      if (err) {
         console.log(err);
       }
 
@@ -30,21 +30,21 @@ exports.index = function(req, res){
   //  app.locals.user = _user;
   //}
 
-//  Movie.fetch(function(err, movies){
-//    if(err){
-//      console.log(err);
-//    }
-//
-//    res.render('index', {
-//      title: 'imooc 首页',
-//      movies: movies
-//    });
-//  });
+  //  Movie.fetch(function(err, movies){
+  //    if(err){
+  //      console.log(err);
+  //    }
+  //
+  //    res.render('index', {
+  //      title: 'imooc 首页',
+  //      movies: movies
+  //    });
+  //  });
 };
 //});
 
 // search page
-exports.search = function(req, res){
+exports.search = function (req, res) {
   var catId = req.query.cat;
   var q = req.query.q;
   var page = parseInt(req.query.p, 10) || 0;
@@ -52,16 +52,16 @@ exports.search = function(req, res){
   var index = page * count;
 
 
-  if(catId){
+  if (catId) {
     Category
-      .find({_id: catId})
+      .find({ _id: catId })
       .populate({
         path: 'movies',
         select: 'title poster'
       })
-      .exec(function(err, categories){
+      .exec(function (err, categories) {
         //console.log(categories);
-        if(err){
+        if (err) {
           console.log(err);
         }
         var category = categories[0] || {};
@@ -78,11 +78,11 @@ exports.search = function(req, res){
         });
       });
   }
-  else{
+  else {
     Movie
-      .find({title: new RegExp(q + '.*', 'i')})
-      .exec(function(err, movies){
-        if(err){
+      .find({ title: new RegExp(q + '.*', 'i') })
+      .exec(function (err, movies) {
+        if (err) {
           console.log(err);
         }
         var results = movies.slice(index, index + count);

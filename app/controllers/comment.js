@@ -4,12 +4,12 @@
 var mongoose = require('mongoose');
 
 // comment
-exports.save = function(req, res){
+exports.save = function (req, res) {
   var _comment = req.body.comment;
   var movieId = _comment.movie;
 
-  if(_comment.cid){
-    Comment.findById(_comment.cid, function(err, comment){
+  if (_comment.cid) {
+    Comment.findById(_comment.cid, function (err, comment) {
       var reply = {
         from: _comment.from,
         to: _comment.tid,
@@ -18,20 +18,20 @@ exports.save = function(req, res){
 
       comment.reply.push(reply);
 
-      comment.save(function(err, comment){
-        if(err){
+      comment.save(function (err, comment) {
+        if (err) {
           console.log(err);
         }
 
-        res.redirect('/movie/' +  movieId);
+        res.redirect('/movie/' + movieId);
       });
     });
   }
-  else{
+  else {
     var comment = new Comment(_comment);
 
-    comment.save(function(err, comment){
-      if(err){
+    comment.save(function (err, comment) {
+      if (err) {
         console.log(err);
       }
 
