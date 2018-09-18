@@ -1,5 +1,6 @@
 const utils = require('../utils/utils');
 const net = require('net');
+const iconv = require('iconv-lite');
 const socket = new net.Socket();
 
 const host = '119.254.144.7';
@@ -72,7 +73,6 @@ function generateMessage(data){
   return messageDate;
 
 }
-var iconv = require('iconv-lite');
 
 function getStringGbkByHexString(str){
   let buf = iconv.encode(str, 'gbk');
