@@ -84,14 +84,30 @@ if ('development' === app.get('env')) {
   //mongoose.set('debug', false);
 }
 
+
 require('./config/routes')(app);
 
-app.listen(port);//监听端口
+//app.use(function(err, req, res, next){
+//  console.error(err.stack);
+//  res.status(err.status || 500);
+//  res.render('error', {
+//    message: err.message,
+//    error: err
+//  });
+//});
+
+app.use(function (err, req, res, next) {
+  console.error(err.stack)
+  res.status(500).send('Something broke!')
+});
+
 app.locals.moment = require('moment');
 //app.use(express.static(path.join(__dirname, 'public'))); //dirname当前目录
 app.use(serveStatic(path.join(__dirname, 'public'))); //dirname当前目录
 
-console.log('imooc startd on port ' + port);//打印日志
+app.listen(port, () =>
+  console.log('imooc startd on port ' + port));//监听端口
+//console.log('imooc startd on port ' + port);//打印日志
 
 
 

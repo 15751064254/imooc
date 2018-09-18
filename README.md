@@ -71,6 +71,7 @@
     http://192.168.200.215:3000/admin/category/list
     http://192.168.200.215:3000/results
 
-## yarn Install
+### yarn Install
+      yarn add  bcrypt async body-parser connect-mongo connect-multiparty connect-livereload cookie-parser crypto express express-session jade jshint-stylish mocha moment mongoose morgan serve-static should underscore iconv-lite memcached redis uglify-js grunt time-grunt load-grunt-tasks  grunt-concurrent grunt-contrib-connect grunt-contrib-clean grunt-contrib-copy grunt-contrib-jade grunt-contrib-jshint grunt-contrib-less grunt-contrib-nodemon grunt-contrib-uglify grunt-contrib-watch grunt-mocha-test grunt-nodemon --save    
+      multer
 
-    yarn add async  bcrypt  body-parser  connect-mongo  connect-multiparty  cookie-parser  crypto  express  express-session  grunt  grunt-concurrent  grunt-contrib-clean  grunt-contrib-copy  grunt-contrib-jshint  grunt-contrib-less  grunt-contrib-uglify  grunt-contrib-watch  grunt-mocha-test  grunt-nodemon  jade  jshint-stylish  load-grunt-tasks  mocha  moment  mongoose  morgan  serve-static  should  time-grunt  underscore --save

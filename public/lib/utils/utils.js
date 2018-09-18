@@ -54,6 +54,15 @@ function generateByHexString(hexString) {
   return hexs;
 }
 
+function decToHexString(dec) {
+  var hexString = parseInt(dec).toString(16);
+  if (hexString.length < SUBLEN) {
+    hexString = '0' + hexString;
+  }
+  //console.log(hexString + '\t' + dec);
+  return hexString.toUpperCase();
+}
+
 function generateCheckCode(hexString) {
   let code = 0;
   let length = hexString.length;
@@ -72,20 +81,23 @@ function generateCheckCode(hexString) {
   return decToHexString(code);
 }
 
-
-function decToHexString(dec) {
-  var hexString = parseInt(dec).toString(16);
-  if (hexString.length < SUBLEN) {
-    hexString = '0' + hexString;
-  }
-  //console.log(hexString + '\t' + dec);
-  return hexString.toUpperCase();
+function prefixZero(str, len){
+  //console.log((Array(len).join(0) + str).slice(-len) + '\t\t\t\t\t' + str);
+  return (Array(len).join(0) + str).slice(-len);
 }
+
+function suffixZero(str, len){
+  //console.log((str + Array(len).join(0)).slice(0, len) + '\t\t\t\t\t' + str);
+  return (str + Array(len).join(0)).slice(0, len);
+}
+
 
 module.exports = exports = {
   hexStringToByte,
   byteToHexString,
   decToHexString,
   generateCheckCode,
-  generateByHexString
+  generateByHexString,
+  prefixZero,
+  suffixZero
 }

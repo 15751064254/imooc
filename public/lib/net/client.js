@@ -2,10 +2,10 @@ const utils = require('../utils/utils');
 const net = require('net');
 const socket = new net.Socket();
 
-//const host = '119.254.144.7';
-//const port = 7708;
-const host = '172.17.33.141';
-const port = 7008;
+const host = '119.254.144.7';
+const port = 7708;
+//const host = '172.17.33.141';
+//const port = 7008;
 
 
 socket.setTimeout(3000);
@@ -21,7 +21,8 @@ socket.connect(port, host, () => {
 socket.on('data', (data) => {
   const array = utils.byteToHexString(data);
   console.log('data:\t' + array);
-  socket.destroy();
+  close(socket);
+  //socket.destroy();
 });
 
 socket.on('timeout', () => {
@@ -55,12 +56,12 @@ function generateMessage(data){
   let messageId = '0100';
   let terminalPhoneNo = getTerminalPhoneNoByString('18500525865');
 
-  messageNo = prefixZero(messageNo, 4);
+  messageNo = utils.prefixZero(messageNo, 4);
   let terminalInfo = `${manufacturerId}${terminalModel}${terminalId}`;
   let vehicleInfo = `${plateColor}${plateNumber}`;
   let messageBody = `${provinceId}${cityId}${terminalInfo}${vehicleInfo}`;
   let messageBodyAttribute = utils.decToHexString(messageBody.length / 2);
-  messageBodyAttribute = prefixZero(messageBodyAttribute, 4)
+  messageBodyAttribute = utils.prefixZero(messageBodyAttribute, 4)
   let header = `${messageId}${messageBodyAttribute}${terminalPhoneNo}${messageNo}`;
   let body = `${header}${messageBody}`;
   //let checkCode = 'D1';
@@ -91,7 +92,7 @@ function getPlateNumberByHexString(plateNumber){
 }
 
 function getTerminalPhoneNoByString(terminalPhoneNo){
-  return prefixZero(terminalPhoneNo, 12);
+  return utils.prefixZero(terminalPhoneNo, 12);
 }
 
 function getPlateColorByHexString(plateColor){
@@ -109,8 +110,8 @@ function getProvinceIdByHexString(provinceId){
     provinceIdHex = getStringGbkByHexString(provinceId);
   }
   //console.log('000B');
-  //console.log(provinceIdHex + '\t' + prefixZero(provinceIdHex, 4));
-  return prefixZero(provinceIdHex, 4);
+  //console.log(provinceIdHex + '\t' + utils.prefixZero(provinceIdHex, 4));
+  return utils.prefixZero(provinceIdHex, 4);
 }
 
 function getCityIdByHexString(cityId){
@@ -122,32 +123,22 @@ function getCityIdByHexString(cityId){
     cityIdHex = getStringGbkByHexString(cityId);
   }
   //console.log('006F');
-  //console.log(cityIdHex + '\t' + prefixZero(cityIdHex, 4));
-  return prefixZero(cityIdHex, 4);
+  //console.log(cityIdHex + '\t' + utils.prefixZero(cityIdHex, 4));
+  return utils.prefixZero(cityIdHex, 4);
 }
 function getManufacturerIdByHexString(manufacturerId){
   let manufacturerIdHex = getStringGbkByHexString(manufacturerId);
-  return suffixZero(manufacturerIdHex, 10);
+  return utils.suffixZero(manufacturerIdHex, 10);
 }
 
 function getTerminalModelByHexString(terminalModel){
   let terminalModelHex = getStringGbkByHexString(terminalModel);
-  return suffixZero(terminalModelHex, 40);
+  return utils.suffixZero(terminalModelHex, 40);
 }
 
 function getTerminalIdByHexString(terminalId){
   let terminalIdHex = getStringGbkByHexString(terminalId);
-  return suffixZero(terminalIdHex, 14);
-}
-
-function prefixZero(str, len){
-  //console.log((Array(len).join(0) + str).slice(-len) + '\t\t\t\t\t' + str);
-  return (Array(len).join(0) + str).slice(-len);
-}
-
-function suffixZero(str, len){
-  //console.log((str + Array(len).join(0)).slice(0, len) + '\t\t\t\t\t' + str);
-  return (str + Array(len).join(0)).slice(0, len);
+  return utils.suffixZero(terminalIdHex, 14);
 }
 
 function send(socket, data){
