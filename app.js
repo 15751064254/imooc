@@ -18,7 +18,7 @@ var port = process.env.PORT || 3000;// process 全局变量，获得传入参数
 
 var app = express();//启动 web 服务器
 var fs = require('fs');
-var dbUrl = 'mongodb://192.168.200.215/imooc';
+var dbUrl = 'mongodb://192.168.200.250/imooc';
 //mongoose.connect('mongodb://localhost/imooc');
 mongoose.connect(dbUrl);
 

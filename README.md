@@ -39,14 +39,20 @@
 ## nodejs模块bcrypt失败
 
     npm cache verify --force
+
     npm install -g node-gyp
     node-gyp --python /path/to/python2.7
     npm install bcrypt
 
     
-    启动mongodb数据库
+## 启动mongodb数据库
     cd /opt/mongodb
-    ./bin/mongod -config conf/mongod.conf
+    sudo ./bin/mongod -config conf/mongod.conf
+## 停止mongodb数据库
+    sudo ./bin/mongo 127.0.0.1:27017/test
+    > use admin
+    > db.shutdownServer()
+    
 
     post
     http://192.168.200.215:3000/user/signup
