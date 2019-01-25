@@ -1,0 +1,12 @@
+extends ../layout
+
+block style
+  link(rel="stylesheet", href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css")
+  link(rel="stylesheet", href="/dest/map/amap/index.css")
+
+block content
+  #map
+
+block script
+  script(src="https://webapi.amap.com/maps?v=1.4.10&key=c4a2695962f018ba5792499fbec11427")
+  script(src="/dest/map/amap/index.min.js")

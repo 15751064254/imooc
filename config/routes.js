@@ -20,6 +20,7 @@ module.exports = function (app) {
 
   // map
   app.get('/map', Map.index);
+  app.get('/map/driving', Map.driving);
 
   // pre handle user
   app.use(function (req, res, next) {

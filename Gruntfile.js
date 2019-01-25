@@ -80,7 +80,8 @@ module.exports = function (grunt) {
         },
         files: {
           'public/dest/demo/index.css': 'public/less/demo/index.less',
-          'public/dest/map/index.css': 'public/less/map/index.less',
+          'public/dest/map/amap/index.css': 'public/less/map/amap/index.less',
+          'public/dest/map/amap/driving.css': 'public/less/map/amap/driving.less',
           'public/dest/index.css': 'public/less/index.less'
         }
       },
@@ -100,7 +101,9 @@ module.exports = function (grunt) {
           'public/dest/utils/utils.min.js': [
             'public/lib/utils/**/*.js',
           ],
-          'public/dest/map/map.min.js': 'public/js/map/map.js',
+          'public/dest/demo/index.min.js': 'public/less/demo/index.js',
+          'public/dest/map/amap/index.min.js': 'public/js/map/amap/index.js',
+          'public/dest/map/amap/driving.min.js': 'public/js/map/amap/driving.js',
           'public/dest/admin.min.js': 'public/js/admin.js',
           'public/dest/detail.min.js': [
             'public/js/detail.js'

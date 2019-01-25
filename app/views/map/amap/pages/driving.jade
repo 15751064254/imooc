@@ -1,0 +1,16 @@
+extends ../layout
+
+block style
+  link(rel="stylesheet", href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css")
+  link(rel="stylesheet", href="/dest/map/amap/driving.css")
+  title 位置经纬度 + 获取驾车规划数据
+
+block content
+  #container
+  #panel
+
+block script
+  script(src="https://webapi.amap.com/maps?v=1.4.10&key=c4a2695962f018ba5792499fbec11427&plugin=AMap.Driving")
+  script(src="https://a.amap.com/jsapi_demos/static/demo-center/js/demoutils.js")
+  //- script(src="/dest/map/amap/driving.min.js")
+  script(src="/js/map/amap/driving.js")
