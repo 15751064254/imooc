@@ -1,3 +1,10 @@
+### yarn Install
+    yarn add async bcrypt body-parser connect-livereload connect-mongo connect-multiparty cookie-parser crypto express express-session fdfs grunt grunt-concurrent grunt-contrib-clean grunt-contrib-connect grunt-contrib-copy grunt-contrib-jade grunt-contrib-jshint grunt-contrib-less grunt-contrib-nodemon grunt-contrib-uglify grunt-contrib-watch grunt-mocha-test grunt-nodemon iconv-lite jade jshint-stylish load-grunt-tasks memcached mocha moment mongoose morgan redis serve-static should time-grunt uglify-js underscore
+
+    bower install
+
+    grunt
+
 # imooc
     We recommend every repository include a README, LICENSE, and .gitignore.
     …or create a new repository on the command line
@@ -55,29 +62,29 @@
     
 
     post
-    http://192.168.200.215:3000/user/signup
-    http://192.168.200.215:3000/user/signin
-    http://192.168.200.215:3000/movie/
-    http://192.168.200.215:3000/admin/movie/update/
-    http://192.168.200.215:3000/admin/movie/list
-    http://192.168.200.215:3000/user/comment
-    http://192.168.200.215:3000/admin/category
+    http://192.168.250.253:3000/user/signup
+    http://192.168.250.253:3000/user/signin
+    http://192.168.250.253:3000/movie/
+    http://192.168.250.253:3000/admin/movie/update/
+    http://192.168.250.253:3000/admin/movie/list
+    http://192.168.250.253:3000/user/comment
+    http://192.168.250.253:3000/admin/category
 
 
 
     get
-    http://192.168.200.215:3000/
-    http://192.168.200.215:3000/signin
-    http://192.168.200.215:3000/signup
-    http://192.168.200.215:3000/logout
-    http://192.168.200.215:3000/admin/user/list
-    http://192.168.200.215:3000/admin/movie/new
-    http://192.168.200.215:3000/admin/movie/list
-    http://192.168.200.215:3000/admin/category/new
-    http://192.168.200.215:3000/admin/category/list
-    http://192.168.200.215:3000/results
-#
-    http://192.168.200.250:3000/map
+    http://192.168.250.253:3000/
+    http://192.168.250.253:3000/signin
+    http://192.168.250.253:3000/signup
+    http://192.168.250.253:3000/logout
+    http://192.168.250.253:3000/admin/user/list
+    http://192.168.250.253:3000/admin/movie/new
+    http://192.168.250.253:3000/admin/movie/list
+    http://192.168.250.253:3000/admin/category/new
+    http://192.168.250.253:3000/admin/category/list
+    http://192.168.250.253:3000/results
+###
+    http://192.168.250.253:3000/map
 
 ### yarn Install
       yarn add  bcrypt async body-parser connect-mongo connect-multiparty connect-livereload cookie-parser crypto express express-session jade jshint-stylish mocha moment mongoose morgan serve-static should underscore iconv-lite memcached redis uglify-js grunt time-grunt load-grunt-tasks  grunt-concurrent grunt-contrib-connect grunt-contrib-clean grunt-contrib-copy grunt-contrib-jade grunt-contrib-jshint grunt-contrib-less grunt-contrib-nodemon grunt-contrib-uglify grunt-contrib-watch grunt-mocha-test grunt-nodemon --save    
