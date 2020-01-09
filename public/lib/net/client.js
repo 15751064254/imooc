@@ -1,13 +1,13 @@
 'use strict'
 
 
-const net = require('net');
+import { Socket } from 'net';
 
-const utils = require('../tools/utils');
-const mySocket = require('./mySocket');
+import { byteToHexString } from '../tools/utils';
+import { send, closeSocket } from './mySocket';
 
 
-const socket = new net.Socket();
+const socket = new Socket();
 const host = '119.254.144.7';
 const port = 7708;
 //const host = '172.17.33.141';
@@ -22,13 +22,13 @@ socket.connect(port, host, () => {
   //const array = utils.hexStringToByte(str);
   //const sendBuf = Buffer.from(array);
   //socket.write(sendBuf);
-  mySocket.send(socket, messageNo++);
+  send(socket, messageNo++);
 });
 
 socket.on('data', (data) => {
-  const array = utils.byteToHexString(data);
+  const array = byteToHexString(data);
   console.log('data:\t' + array);
-  mySocket.closeSocket(socket);
+  closeSocket(socket);
   //socket.destroy();
 });
 

@@ -1,13 +1,13 @@
 'use strict'
 
-const utils = require('../tools/utils');
-const terminalRegistration = require('../message/terminalRegistration_0x0100');
+import { hexStringToByte } from '../tools/utils';
+import { generateMessage } from '../message/terminalRegistration_0x0100';
 
 function sendDataMessage(messageNo) {
   let data = {};
-  let str = terminalRegistration.generateMessage(messageNo, data);
+  let str = generateMessage(messageNo, data);
   console.log('\t' + str);
-  const array = utils.hexStringToByte(str);
+  const array = hexStringToByte(str);
   const sendBuffer = Buffer.from(array);
   return sendBuffer;
 }
@@ -28,7 +28,7 @@ function closeSocket(socket){
   socket.destroy();
 }
 
-module.exports = {
+export default {
   send,
   closeSocket
 };
