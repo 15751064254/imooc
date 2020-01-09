@@ -22,7 +22,7 @@
     git remote add origin https://github.com/15751064254/imooc.git
     git push -u origin master
     …or import code from another repository
-    
+
     You can initialize this repository with code from a Subversion, Mercurial, or TFS project.
     Import code
 
@@ -30,11 +30,9 @@
     git push origin master
 
 ## grunt test
-
     grunt test
 
 ## npm install
-
     npm install async bcrypt connect-mongo crypto express grunt grunt-concurrent grunt-contrib-jshint grunt-contrib-less grunt-contrib-uglify grunt-contrib-watch grunt-mocha-test grunt-nodemon jade moment mongoose underscore body-parser cookie-parser express-session morgan connect-multiparty mocha should serve-static --save --save-dev
 
 ## start
@@ -59,7 +57,7 @@
     sudo ./bin/mongo 127.0.0.1:27017/test
     > use admin
     > db.shutdownServer()
-    
+
 
     post
     http://192.168.250.253:3000/user/signup
@@ -83,10 +81,18 @@
     http://192.168.250.253:3000/admin/category/new
     http://192.168.250.253:3000/admin/category/list
     http://192.168.250.253:3000/results
-###
+
+### map
     http://192.168.250.253:3000/map
 
 ### yarn Install
-      yarn add  bcrypt async body-parser connect-mongo connect-multiparty connect-livereload cookie-parser crypto express express-session jade jshint-stylish mocha moment mongoose morgan serve-static should underscore iconv-lite memcached redis uglify-js grunt time-grunt load-grunt-tasks  grunt-concurrent grunt-contrib-connect grunt-contrib-clean grunt-contrib-copy grunt-contrib-jade grunt-contrib-jshint grunt-contrib-less grunt-contrib-nodemon grunt-contrib-uglify grunt-contrib-watch grunt-mocha-test grunt-nodemon --save    
-      multer
+    yarn add  bcrypt async body-parser connect-mongo connect-multiparty connect-livereload cookie-parser crypto express express-session jade jshint-stylish mocha moment mongoose morgan serve-static should underscore iconv-lite memcached redis uglify-js grunt time-grunt load-grunt-tasks  grunt-concurrent grunt-contrib-connect grunt-contrib-clean grunt-contrib-copy grunt-contrib-jade grunt-contrib-jshint grunt-contrib-less grunt-contrib-nodemon grunt-contrib-uglify grunt-contrib-watch grunt-mocha-test grunt-nodemon --save
+    multer
+
+### INSTALL
+    npm install -g grunt-cli
+    npm install -g bower
+    npm install -g yarn
+    yarn install
+    grunt
 
