@@ -4,7 +4,7 @@
   "description": "imooc movie",
   "main": "app.js",
   "dependencies": {
-    "async": "^2.6.2",
+    "async": "^3.2.2",
     "bcrypt": "^3.0.4",
     "body-parser": "^1.18.3",
     "connect-livereload": "^0.6.1",
